@@ -31,7 +31,6 @@ public class SecurityConfig {
 						.permitAll()
 						.anyRequest().authenticated()
 						)
-						.userDetailsService(myUserDetailsService)
 						.headers(headers -> headers.frameOptions().sameOrigin())
 						.httpBasic(withDefaults())
 						.build();
