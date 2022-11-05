@@ -2,7 +2,6 @@ package com.cadastro.serviceImpl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cadastro.exception.ResourceNotFoundException;
@@ -12,7 +11,6 @@ import com.cadastro.repositories.EnderecoRepository;
 @Service
 public class EnderecoServiceImpl {
 
-	@Autowired
 	private EnderecoRepository repository;
 	
 	public Endereco saveEndereco(Endereco endereco) {

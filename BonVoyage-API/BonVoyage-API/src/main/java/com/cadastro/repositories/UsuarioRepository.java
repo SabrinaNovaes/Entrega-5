@@ -8,4 +8,5 @@ import com.cadastro.model.Usuarios;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuarios, Long> {
 
+	Usuarios findByEmail(String email);
 }

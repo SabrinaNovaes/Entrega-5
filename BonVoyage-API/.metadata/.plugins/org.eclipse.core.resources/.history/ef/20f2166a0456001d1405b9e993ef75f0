@@ -1,5 +1,0 @@
-package com.cadastro.repositories;
-
-public interface ClienteRepository {
-
-}

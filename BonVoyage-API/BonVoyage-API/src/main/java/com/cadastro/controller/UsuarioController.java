@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cadastro.model.Usuarios;
-import com.cadastro.serviceImpl.UsuarioServiceImpl;
+import com.cadastro.service.UsuarioService;
 
 @RestController
 @CrossOrigin("*")
@@ -24,33 +24,35 @@ import com.cadastro.serviceImpl.UsuarioServiceImpl;
 public class UsuarioController {
 	
 	@Autowired
-	private UsuarioServiceImpl service;
+	private UsuarioService usuarioService;
 
 	@GetMapping("{id}")
-	public ResponseEntity<Usuarios> getUsuariosById(@PathVariable("id") long usuarioid ) {
-		return new ResponseEntity<Usuarios>(service.getUsuariosById(usuarioid), HttpStatus.OK);
+	public ResponseEntity<Usuarios> findById(@PathVariable Long id) {
+		Usuarios usuario = usuarioService.getUsuariosById(id);
+		return ResponseEntity.ok().body(usuario);
 	}
-
+		
 	@GetMapping
 	public ResponseEntity<List<Usuarios>> findAll() {
-		List<Usuarios> usuarios = service.getAllUsuarios();
+		List<Usuarios> usuarios = usuarioService.getAllUsuarios();
 		return ResponseEntity.ok().body(usuarios);
 	}
-	
-	@PostMapping 
-	public ResponseEntity<Usuarios> saveUsuarios(@RequestBody Usuarios usuario){
-		return new ResponseEntity<Usuarios>(service.saveUsuarios(usuario), HttpStatus.CREATED);
+
+	@PostMapping
+	public ResponseEntity<Usuarios> save(@RequestBody Usuarios usuarios) {
+		Usuarios usuario = usuarioService.saveUsuarios(usuarios);
+		return ResponseEntity.ok().body(usuario);
 	}
 	
 	@PutMapping("{id}")
 	public ResponseEntity<Usuarios> updateUsuarios(@PathVariable("id") long id, 
 			@RequestBody Usuarios usuario) {
-		return new ResponseEntity<Usuarios>(service.updateUsuarios(usuario, id), HttpStatus.OK);
+		return new ResponseEntity<Usuarios>(usuarioService.updateUsuarios(usuario, id), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("{id}")
 	public ResponseEntity<String> deleteUsuarios(@PathVariable("id") long id) {
-		service.deleteUsuarios(id);
+		usuarioService.deleteUsuarios(id);
 	
 	return new ResponseEntity<String>("Usuário deletado com sucesso!",
 			HttpStatus.OK);

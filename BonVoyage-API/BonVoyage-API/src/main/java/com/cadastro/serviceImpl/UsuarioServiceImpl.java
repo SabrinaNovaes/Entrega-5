@@ -3,6 +3,7 @@
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cadastro.exception.ResourceNotFoundException;
@@ -11,16 +12,33 @@ import com.cadastro.repositories.UsuarioRepository;
 import com.cadastro.service.UsuarioService;
 
 @Service
-public class UsuarioServiceImpl implements UsuarioService{
+public class UsuarioServiceImpl implements UsuarioService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	
+	private BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+	
+	public Usuarios execute(Usuarios usuarios) {
+		Usuarios usuarioExiste = usuarioRepository.findByEmail(usuarios.getEmail());
+	
+		if(usuarioExiste != null) {
+			throw new Error("Usuário não encontrado");
+		}
+		
+		usuarios.setSenha(passwordEncoder().encode(usuarios.getSenha()));
+		Usuarios createdUsuario = usuarioRepository.save(usuarios);
+		
+		return createdUsuario;
+	}
 	
 	@Override
 	public Usuarios saveUsuarios(Usuarios usuarios) {
 		return usuarioRepository.save(usuarios);
 	}
-	
+
 	@Override
 	public List<Usuarios> getAllUsuarios() {
 		return usuarioRepository.findAll();

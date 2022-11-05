@@ -37,6 +37,8 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\Remakker\Downloads\spring_auth"/>
+			<item value="C:\Users\Remakker\Desktop\trabalhod\ProjetoModelo-backend"/>
 			<item value="C:\Users\Remakker\Downloads\ProjetoModelo-backend"/>
 			<item value="C:\Users\Remakker\Desktop\trabalhod\api_funcionarios"/>
 			<item value="C:\Users\Remakker\Desktop\monitoria\monitoriaSpringTools\funcionarios_api"/>

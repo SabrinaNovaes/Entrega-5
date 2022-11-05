@@ -24,6 +24,7 @@ import lombok.NoArgsConstructor;
 public class Usuarios {
 
 	@Id
+	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
